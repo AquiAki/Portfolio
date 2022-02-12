@@ -3,8 +3,7 @@ import React, { useState } from "react";
 function Register(props) {
 
     const [contact, setContact] = useState({
-      fName: "",
-      lName: "",
+      accountName: "",
       email: "",
     });
 
@@ -22,8 +21,7 @@ function Register(props) {
     function submitInfo(event) {
       props.onAdd(contact);
       setContact({
-        fName: "",
-        lName: "",
+        accountName: "",
         email: "",
       });
       event.preventDefault();
@@ -32,28 +30,22 @@ function Register(props) {
   return (
     <div>
       <h3>~以下の内容で登録する~</h3>
-      <h2>{contact.fName} {contact.lName}</h2>
+      <h2>{contact.accountName}</h2>
       <h2>{contact.email}</h2>
       <form>
         <input
           onChange={handleChange}
-          name="fName"
-          value={contact.fName}
-          placeholder="First Name"
-        />
-        <input
-          onChange={handleChange}
-          name="lName"
-          value={contact.lName}
-          placeholder="Last Name"
+          name="accountName"
+          value={contact.accountName}
+          placeholder="アカウント名"
         />
         <input
           onChange={handleChange}
           name="email"
           value={contact.email}
-          placeholder="Email"
+          placeholder="メールアドレス"
         />
-        <button onClick={submitInfo}>Submit</button>
+        <button onClick={submitInfo}>登録する</button>
       </form>
     </div>
   );

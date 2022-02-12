@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 function Login(props) {
   const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
+    accountName: "",
     email: "",
   });
 
@@ -21,8 +20,7 @@ function Login(props) {
   function submitInfo(event) {
     props.onAdd(contact);
     setContact({
-      fName: "",
-      lName: "",
+      accountName: "",
       email: "",
     });
     event.preventDefault();
@@ -30,29 +28,22 @@ function Login(props) {
 
   return (
     <div>
-      <h3> すでに登録した名前、パスワード、emailアドレスでログインする</h3>
+      <h3> すでに登録したアカウント名、メールアドレスでログインする</h3>
       <form>
         <input
           onChange={handleChange}
-          name="fName"
-          value={contact.fName}
-          placeholder="First Name"
-        />
-        <input
-          onChange={handleChange}
-          name="lName"
-          value={contact.lName}
-          placeholder="Last Name"
+          name="accountName"
+          value={contact.accountName}
+          placeholder="アカウント名"
         />
         <input
           onChange={handleChange}
           name="email"
           value={contact.email}
-          placeholder="Email"
+          placeholder="メールアドレス"
         />
-        <button onClick={submitInfo}>Login</button>
+        <button onClick={submitInfo}>ログイン</button>
       </form>
-
     </div>
   );
 }
