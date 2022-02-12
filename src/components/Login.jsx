@@ -18,12 +18,18 @@ function Login(props) {
   }
 
   function submitInfo(event) {
-    props.onAdd(contact);
+    
+    props.toNote(true);
+    
+    // props.onAdd(contact);
+
+    　
     setContact({
       accountName: "",
       email: "",
     });
-    event.preventDefault();
+    
+   
   }
 
   return (

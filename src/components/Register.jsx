@@ -19,17 +19,22 @@ function Register(props) {
     }
 
     function submitInfo(event) {
+      
+
       props.onAdd(contact);
+
+      event.preventDefault();
+
       setContact({
         accountName: "",
         email: "",
       });
-      event.preventDefault();
+      
     }
 
   return (
     <div>
-      <h3>~以下の内容で登録する~</h3>
+      <h3>以下の内容で登録する</h3>
       <h2>{contact.accountName}</h2>
       <h2>{contact.email}</h2>
       <form>
