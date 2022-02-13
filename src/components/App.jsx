@@ -1,50 +1,79 @@
 import React, { useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Home from "./Home";
+import Register from "./Register";
+import Login from "./Login";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
 
 function App() {
-  const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
-    email: "",
-  });
+    const [infos, setInfos] = useState({});
+    const [isHome, setIsHome] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
+    const [notes, setNotes] = useState([]);
+    const [isTrue, setIsTrue] = useState(false);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+    function addInfo(newInfos) {
+      setInfos((prevInfos) => {
+        return {...prevInfos, newInfos};
+      });
+    }
 
-    setContact((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value,
-      };
-    });
-  }
+    function goRegister(boolean) {
+      setIsRegistered(boolean);
+      setIsLogin(false);
+    }
+
+    function goLogin(boolean) {
+      setIsLogin(boolean);
+      setIsRegistered(false)
+    }
+
+    function goToNote(c){
+      setIsTrue(c)
+      setIsLogin(false)
+      setIsHome(true)
+    }
+
+    function addNote(newNote) {
+      setNotes((prevNotes) => {
+        return [...prevNotes, newNote];
+      });
+    }
+
+    function deleteNote(id) {
+      setNotes((prevNotes) => {
+        return prevNotes.filter((noteItem, index) => {
+          return index !== id;
+        });
+      });
+    }
 
   return (
-    <div className="container">
-      <h1>
-        Hello {contact.fName} {contact.lName}
-      </h1>
-      <p>{contact.email}</p>
-      <form>
-        <input
-          onChange={handleChange}
-          name="fName"
-          value={contact.fName}
-          placeholder="First Name"
-        />
-        <input
-          onChange={handleChange}
-          name="lName"
-          value={contact.lName}
-          placeholder="Last Name"
-        />
-        <input
-          onChange={handleChange}
-          name="email"
-          value={contact.email}
-          placeholder="Email"
-        />
-        <button>Submit</button>
-      </form>
+    <div>
+      <Header />
+      <div className="container">
+        {!isHome && <Home goToRegister={goRegister} goToLogin={goLogin} />}
+
+        {isRegistered && <Register />}
+        {isLogin && <Login toNote={goToNote} />}
+
+        {isTrue && <CreateArea onAdd={addNote} />}
+        {notes.map((noteItem, index) => {
+          return (
+            <Note
+              key={index}
+              id={index}
+              title={noteItem.title}
+              content={noteItem.content}
+              onDelete={deleteNote}
+            />
+          );
+        })}
+      </div>
+      <Footer />
     </div>
   );
 }
