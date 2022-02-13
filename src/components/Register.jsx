@@ -34,7 +34,7 @@ function Register(props) {
 
   return (
     <div>
-      <h3>以下の内容で登録する</h3>
+      <p>以下の内容で登録する</p>
       <h2>{contact.accountName}</h2>
       <h2>{contact.email}</h2>
       <form>

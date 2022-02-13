@@ -34,7 +34,7 @@ function Login(props) {
 
   return (
     <div>
-      <h3> すでに登録したアカウント名、メールアドレスでログインする</h3>
+      <p> すでに登録したアカウント名、メールアドレスでログインする</p>
       <form>
         <input
           onChange={handleChange}

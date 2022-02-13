@@ -12,8 +12,10 @@ function Home(props) {
 
   return (
     <div class="home">
-      <button onClick={toRegister}>Register</button>
-      <button onClick={toLogin}  class="homeButton">
+      <button onClick={toRegister} class="registerButton">
+        Register
+      </button>
+      <button onClick={toLogin} class="loginButton">
         Login
       </button>
     </div>
